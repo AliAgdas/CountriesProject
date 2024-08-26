@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="tr" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>dunyayi degistirecek proje</title>
+</head>
+<body>
+<form id="textForm">
+    <label for="inputText">Enter iso code:</label>
+    <input type="text" id="inputText" name="inputText">
+    <button type="submit">Ara</button>
+</form>
+&nbsp;
+<div>
+    <h3>iso kodu girilen ulke adi:</h3>
+    <p id="resultText"></p>
+</div>
+&nbsp;
+<form id="textForm2">
+    <label for="inputText">Enter country name:</label>
+    <input type="text" id="inputText2" name="inputText2">
+    <button type="submit">Ara</button>
+</form>
+&nbsp;
+<div>
+    <h3>ulkeler:</h3>
+    <p id="resultText2"></p>
+</div>
+&nbsp;
+<form id="textForm3">
+    <label for="inputText">Enter country name:</label>
+    <input type="text" id="inputText3" name="inputText3">
+    <button type="submit">Ara</button>
+</form>
+&nbsp;
+<div>
+    <h3>Ulke bilgileri: </h3>
+    <p id="resultText3"></p>
+</div>
+<script>
+    document.getElementById('textForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const inputText = document.getElementById('inputText').value;
+
+        fetch('/CountriesProject/process', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: 'inputText=' + encodeURIComponent(inputText)
+        })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('resultText').textContent = data;
+            })
+            .catch(error => console.error('Error:', error));
+    });
+
+    document.getElementById('textForm2').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const inputText = document.getElementById('inputText2').value;
+
+        fetch('/CountriesProject/process', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: 'inputText2=' + encodeURIComponent(inputText)
+        })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('resultText2').textContent = data;
+            })
+            .catch(error => console.error('Error:', error));
+    });
+
+    document.getElementById('textForm3').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const inputText = document.getElementById('inputText3').value;
+
+        fetch('/CountriesProject/process', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: 'inputText3=' + encodeURIComponent(inputText)
+        })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('resultText3').textContent = data;
+            })
+            .catch(error => console.error('Error:', error));
+    });
+</script>
+</body>
+</html>
